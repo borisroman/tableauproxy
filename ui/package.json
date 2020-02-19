@@ -1,0 +1,71 @@
+{
+  "name": "admin-page",
+  "version": "0.1.0",
+  "homepage": "/ui",
+  "private": true,
+  "dependencies": {
+    "@atlaskit/avatar": "^17.1.10",
+    "@atlaskit/button": "^13.3.11",
+    "@atlaskit/code": "^11.1.5",
+    "@atlaskit/css-reset": "^5.0.10",
+    "@atlaskit/dropdown-menu": "^9.0.3",
+    "@atlaskit/dynamic-table": "^13.7.4",
+    "@atlaskit/icon": "^20.1.2",
+    "@atlaskit/icon-object": "^5.0.3",
+    "@atlaskit/inline-edit": "^10.0.31",
+    "@atlaskit/page": "^11.0.13",
+    "@atlaskit/page-header": "^9.0.19",
+    "@atlaskit/select": "^11.0.11",
+    "@atlaskit/textarea": "^2.2.9",
+    "@atlaskit/textfield": "^3.1.9",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/immutability-helper": "^2.6.3",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-addons-update": "^0.14.20",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/styled-components": "^5.1.0",
+    "@types/uuid": "^7.0.3",
+    "atlassian-connect-js": "^5.2.30",
+    "immutability-helper": "^3.0.2",
+    "query-string": "^6.12.1",
+    "react": "^16.13.1",
+    "react-addons-update": "^15.6.2",
+    "react-dom": "^16.13.1",
+    "react-resize-aware": "^3.0.0",
+    "react-resize-detector": "^4.2.3",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "styled-components": "~5.1.1",
+    "typescript": "~3.7.2",
+    "uuid": "^8.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react-resize-detector": "^4.2.0"
+  }
+}

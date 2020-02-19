@@ -1,0 +1,119 @@
+{
+  "key": "confluence-cloud-tableau-plugin",
+  "name": "Confluence Cloud - Tableau Plugin",
+  "description": "Adds a macro to Confluence that allows you to view Tableau reports",
+  "vendor": {
+    "name": "Schuberg Philis",
+    "url": "https://schubergphilis.com"
+  },
+  "baseUrl": "{{.LocalBaseUrl}}",
+  "links": {
+    "self": "{{.LocalBaseUrl}}/atlassian-connect.json",
+    "homepage": "{{.LocalBaseUrl}}/atlassian-connect.json"
+  },
+  "authentication": {
+    "type": "jwt"
+  },
+  "lifecycle": {
+    "installed": "/plugin-installed-callback",
+    "uninstalled": "/plugin-uninstalled-callback"
+  },
+  "scopes": [
+    "NONE"
+  ],
+  "modules": {
+    "adminPages": [
+      {
+        "url": "/ui/admin/personal-access-tokens",
+        "name": {
+          "value": "Personal Access Tokens"
+        },
+        "key": "tableau-proxy-personal-access-tokens",
+        "location": "system.admin/tableau-proxy-menu-section",
+        "fullPage": true
+      }
+    ],
+    "dynamicContentMacros": [
+      {
+        "key": "tableau-view",
+        "name": {
+          "value": "Tableau View"
+        },
+        "url": "/ui/macro/view",
+        "renderModes": {
+          "default": {
+            "url": "/ui/macro/static-view?siteId={siteId}&viewId={viewId}&personalAccessTokenUUID={personalAccessTokenUUID}&imageStyle={imageStyle}"
+          }
+        },
+        "description": {
+          "value": "Display Tableau views"
+        },
+        "outputType": "BLOCK",
+        "bodyType": "NONE",
+        "categories": [
+          "media"
+        ],
+        "parameters": [
+          {
+            "identifier": "data",
+            "name": {
+              "value": "data"
+            },
+            "type": "STRING",
+            "required": true
+          },
+          {
+            "identifier": "siteId",
+            "name": {
+              "value": "siteId"
+            },
+            "type": "STRING",
+            "required": true
+          },
+          {
+            "identifier": "viewId",
+            "name": {
+              "value": "viewId"
+            },
+            "type": "STRING",
+            "required": true
+          },
+          {
+            "identifier": "personalAccessTokenUUID",
+            "name": {
+              "value": "personalAccessTokenUUID"
+            },
+            "type": "STRING",
+            "required": true
+          },
+          {
+            "identifier": "imageStyle",
+            "name": {
+              "value": "imageStyle"
+            },
+            "type": "STRING",
+            "required": false
+          }
+        ],
+        "editor": {
+          "url": "/ui/macro/edit-view",
+          "editTitle": {
+            "value": "Edit Tableau View"
+          },
+          "insertTitle": {
+            "value": "Add Tableau View"
+          }
+        }
+      }
+    ],
+    "webSections": [
+      {
+        "key": "tableau-proxy-menu-section",
+        "location": "system.admin",
+        "name": {
+          "value": "Tableau Proxy"
+        }
+      }
+    ]
+  }
+}

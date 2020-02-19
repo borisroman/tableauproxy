@@ -1,0 +1,58 @@
+name: Go
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+        id: node
+
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.14
+        id: go
+
+      - name: Get dependencies
+        run: go get -v -t -d ./...
+
+      - name: Build
+        run: go build -v github.com/borisroman/tableauproxy/cmd/tableauproxy
+
+      - name: Get UI dependencies
+        run: yarn --cwd ./ui install
+
+      - name: Build UI for Acceptance
+        run: REACT_APP_BASE_URL=https://tableauproxy.saas.acc.schubergphilis.com yarn --cwd ./ui build
+
+      - name: Build Docker image for Acceptance
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: borisroman/tableauproxy
+          tags: latest-acc
+
+      - name: Build UI for Production
+        run: REACT_APP_BASE_URL=https://tableauproxy.saas.schubergphilis.com yarn --cwd ./ui build
+
+      - name: Build Docker image for Production
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: borisroman/tableauproxy
+          tags: latest
