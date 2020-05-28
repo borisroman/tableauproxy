@@ -39,6 +39,7 @@ func (c *Controller) HandleViewImagePng(w http.ResponseWriter, r *http.Request) 
 	image, err := c.TableauController.GetImage(imageRequest)
 	if err != nil {
 		http.Error(w, "Unable to retrieve image form Tableau - "+err.Error(), 500)
+		c.mux.Unlock()
 		return
 	}
 	c.mux.Unlock()
