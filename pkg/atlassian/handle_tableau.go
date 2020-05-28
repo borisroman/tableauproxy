@@ -50,6 +50,7 @@ func (c *Controller) HandleTableauSitesGet(w http.ResponseWriter, r *http.Reques
 	sites, err := c.TableauController.GetSites(token)
 	if err != nil {
 		http.Error(w, "unable to retrieve sites from tableau - "+err.Error(), 500)
+		c.mux.Unlock()
 		return
 	}
 	c.mux.Unlock()
@@ -125,6 +126,7 @@ func (c *Controller) HandleTableauViewsGet(w http.ResponseWriter, r *http.Reques
 	views, err := c.TableauController.GetViews(token, siteId)
 	if err != nil {
 		http.Error(w, "unable to retrieve views from tableau - "+err.Error(), 500)
+		c.mux.Unlock()
 		return
 	}
 	c.mux.Unlock()
