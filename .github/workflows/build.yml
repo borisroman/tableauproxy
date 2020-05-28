@@ -28,7 +28,7 @@ jobs:
         run: go get -v -t -d ./...
 
       - name: Build
-        run: go build -v github.com/borisroman/tableauproxy/cmd/tableauproxy
+        run: GOOS=linux go build -v github.com/borisroman/tableauproxy/cmd/tableauproxy
 
       - name: Get UI dependencies
         run: yarn --cwd ./ui install
